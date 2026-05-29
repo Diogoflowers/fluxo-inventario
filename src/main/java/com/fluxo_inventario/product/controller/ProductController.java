@@ -3,6 +3,7 @@ package com.fluxo_inventario.product.controller;
 import com.fluxo_inventario.product.dto.ProductRequestDTO;
 import com.fluxo_inventario.product.dto.ProductResponseDTO;
 import com.fluxo_inventario.product.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ProductResponseDTO createProduct(@RequestBody ProductRequestDTO productRequestDTO) {
+    public ProductResponseDTO createProduct(@RequestBody @Valid ProductRequestDTO productRequestDTO) {
         return productService.createProduct(productRequestDTO);
     }
 
