@@ -1,5 +1,6 @@
 package com.fluxo_inventario.product.service;
 
+import com.fluxo_inventario.product.exception.ProductNotFoundException;
 import com.fluxo_inventario.product.dto.ProductRequestDTO;
 import com.fluxo_inventario.product.dto.ProductResponseDTO;
 import com.fluxo_inventario.product.entity.Product;
@@ -33,5 +34,13 @@ public class ProductService {
                 .stream()
                 .map(ProductMapper::toResponseDTO)
                 .toList();
+    }
+
+    public ProductResponseDTO getProductById(Long id) {
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+
+        return ProductMapper.toResponseDTO(product);
     }
 }
