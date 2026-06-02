@@ -8,16 +8,16 @@ import java.math.BigDecimal;
 
 public record ProductRequestDTO(
 
-        @NotBlank
+        @NotBlank(message = "Product name is required")
         String name,
 
-        @NotBlank
+        @NotBlank(message = "Product description is required")
         String description,
 
-        @Positive
+        @Positive(message = "Price must be greater than zero")
         BigDecimal price,
 
-        @PositiveOrZero
+        @PositiveOrZero(message = "Quantity cannot be negative")
         Integer quantity
 
 ) {
